@@ -1,0 +1,74 @@
+name: legal-contract-review
+version: "1.0"
+description: >
+  An OpenEnv-compliant reinforcement learning environment where AI agents learn to review
+  legal contracts like a professional attorney. Agents identify missing clauses, detect
+  one-sided terms, and rewrite ambiguous language — simulating real-world legal document
+  review workflows used by law firms, paralegals, and legal-tech platforms.
+
+author: Legal Contract Review Team
+tags:
+  - legal
+  - nlp
+  - contract-review
+  - real-world
+  - document-analysis
+  - language-reasoning
+
+tasks:
+  - name: find_missing_clauses
+    description: "Identify all standard clauses missing from a contract (Easy — partial credit per correct clause, penalty per false positive)"
+    difficulty: easy
+    reward_range: [0.0, 1.0]
+    max_steps: 3
+    partial_credit: true
+
+  - name: identify_risky_party
+    description: "Identify which party is disadvantaged by a flagged clause with legal reasoning (Medium — binary correctness + reasoning quality bonus)"
+    difficulty: medium
+    reward_range: [0.0, 1.0]
+    max_steps: 2
+    partial_credit: true
+
+  - name: rewrite_ambiguous
+    description: "Rewrite an ambiguous clause to be legally precise and enforceable (Hard — multi-criteria scoring across 5 legal dimensions)"
+    difficulty: hard
+    reward_range: [0.0, 1.0]
+    max_steps: 1
+    partial_credit: true
+
+endpoints:
+  reset: /reset
+  step:  /step
+  state: /state
+
+action_space:
+  type: structured_json
+  description: >
+    ContractAction object with: task (TaskName enum), and ONE of:
+    find_missing (FindMissingClausesAction with missing_clauses list),
+    identify_risky (IdentifyRiskyPartyAction with clause_id, disadvantaged_party, reasoning),
+    rewrite (RewriteAmbiguousAction with clause_id, rewritten_clause)
+
+observation_space:
+  type: structured_json
+  description: >
+    ContractObservation containing: contract_id, contract_title, contract_text (full),
+    clauses (list of ContractClause with clause_id/title/text/is_ambiguous/flagged_for_analysis),
+    task, task_description, step_number, max_steps, last_action_feedback, score_so_far
+
+reward:
+  type: float
+  range: [0.0, 1.0]
+  description: >
+    Task 1 (find_missing_clauses): Precision-recall partial credit.
+      score = (correctly_identified / total_missing) - (0.1 * false_positives)
+    Task 2 (identify_risky_party): Binary + reasoning quality.
+      score = 1.0 (correct party) + up to 0.2 bonus for legal vocabulary in reasoning
+    Task 3 (rewrite_ambiguous): Multi-criteria weighted scoring.
+      0.10 length adequacy + 0.30 specificity + 0.30 legal vocabulary + 0.20 carve-outs + 0.10 enforceability
+  partial_credit: true
+
+port: 7860
+framework: fastapi
+python_version: "3.11"
