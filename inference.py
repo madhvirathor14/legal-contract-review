@@ -28,6 +28,7 @@ import textwrap
 import httpx
 from typing import List, Optional
 from openai import OpenAI
+from dotenv import load_dotenv
 
 # ─────────────────────────────────────────────
 # Configuration
