@@ -22,6 +22,7 @@ tasks:
     reward_range: [0.0, 1.0]
     max_steps: 3
     partial_credit: true
+    grader: graders.grade_find_missing_clauses
 
   - name: identify_risky_party
     description: "Identify which party is disadvantaged by a flagged clause with legal reasoning (Medium — binary correctness + reasoning quality bonus)"
@@ -29,6 +30,7 @@ tasks:
     reward_range: [0.0, 1.0]
     max_steps: 2
     partial_credit: true
+    grader: graders.grade_identify_risky_party
 
   - name: rewrite_ambiguous
     description: "Rewrite an ambiguous clause to be legally precise and enforceable (Hard — multi-criteria scoring across 5 legal dimensions)"
@@ -36,6 +38,7 @@ tasks:
     reward_range: [0.0, 1.0]
     max_steps: 1
     partial_credit: true
+    grader: graders.grade_rewrite_ambiguous
 
 endpoints:
   reset: /reset
