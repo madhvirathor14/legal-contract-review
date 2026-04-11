@@ -76,7 +76,13 @@ async def list_tasks():
                 "description": "Find all missing standard clauses in a contract",
                 "max_steps": 3,
                 "reward_type": "partial_credit",
-                "grader": "graders.grade_find_missing_clauses",
+                "grading": {
+                    "enabled": True,
+                    "type": "function",
+                    "module": "graders",
+                    "function": "grade_find_missing_clauses",
+                    "partial_credit": True
+                }
             },
             {
                 "name": TaskName.IDENTIFY_RISKY_PARTY.value,
@@ -84,7 +90,13 @@ async def list_tasks():
                 "description": "Identify which party is disadvantaged by a flagged clause",
                 "max_steps": 2,
                 "reward_type": "binary_with_bonus",
-                "grader": "graders.grade_identify_risky_party",
+                "grading": {
+                    "enabled": True,
+                    "type": "function",
+                    "module": "graders",
+                    "function": "grade_identify_risky_party",
+                    "partial_credit": True
+                }
             },
             {
                 "name": TaskName.REWRITE_AMBIGUOUS.value,
@@ -92,9 +104,19 @@ async def list_tasks():
                 "description": "Rewrite an ambiguous clause to be legally sound and enforceable",
                 "max_steps": 1,
                 "reward_type": "multi_criteria",
-                "grader": "graders.grade_rewrite_ambiguous",
+                "grading": {
+                    "enabled": True,
+                    "type": "function",
+                    "module": "graders",
+                    "function": "grade_rewrite_ambiguous",
+                    "partial_credit": True
+                }
             },
-        ]
+        ],
+        "grading": {
+            "enabled": True,
+            "num_tasks": 3
+        }
     }
 
 
