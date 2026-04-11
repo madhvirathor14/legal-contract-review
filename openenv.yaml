@@ -12,37 +12,34 @@ tags:
   - real-world
 
 tasks:
-  - name: find_missing_clauses
+  - id: find_missing_clauses
     description: "Identify all standard clauses missing from a contract"
     difficulty: easy
     reward_range: [0.0, 1.0]
     max_steps: 3
-    grading:
-      enabled: true
+    grader:
       type: function
       module: graders
       function: grade_find_missing_clauses
       partial_credit: true
 
-  - name: identify_risky_party
+  - id: identify_risky_party
     description: "Identify which party is disadvantaged by a flagged clause"
     difficulty: medium
     reward_range: [0.0, 1.0]
     max_steps: 2
-    grading:
-      enabled: true
+    grader:
       type: function
       module: graders
       function: grade_identify_risky_party
       partial_credit: true
 
-  - name: rewrite_ambiguous
+  - id: rewrite_ambiguous
     description: "Rewrite an ambiguous clause to be legally precise and enforceable"
     difficulty: hard
     reward_range: [0.0, 1.0]
     max_steps: 1
-    grading:
-      enabled: true
+    grader:
       type: function
       module: graders
       function: grade_rewrite_ambiguous
@@ -50,7 +47,7 @@ tasks:
 
 endpoints:
   reset: /reset
-  step:  /step
+  step: /step
   state: /state
 
 reward:
