@@ -71,13 +71,13 @@ async def list_tasks():
     return {
         "tasks": [
             {
+                "id": "find_missing_clauses",
                 "name": TaskName.FIND_MISSING_CLAUSES.value,
                 "difficulty": "easy",
-                "description": "Find all missing standard clauses in a contract",
+                "description": "Identify all standard clauses missing from a contract",
                 "max_steps": 3,
-                "reward_type": "partial_credit",
-                "grading": {
-                    "enabled": True,
+                "reward_range": [0.0, 1.0],
+                "grader": {
                     "type": "function",
                     "module": "graders",
                     "function": "grade_find_missing_clauses",
@@ -85,13 +85,13 @@ async def list_tasks():
                 }
             },
             {
+                "id": "identify_risky_party",
                 "name": TaskName.IDENTIFY_RISKY_PARTY.value,
                 "difficulty": "medium",
                 "description": "Identify which party is disadvantaged by a flagged clause",
                 "max_steps": 2,
-                "reward_type": "binary_with_bonus",
-                "grading": {
-                    "enabled": True,
+                "reward_range": [0.0, 1.0],
+                "grader": {
                     "type": "function",
                     "module": "graders",
                     "function": "grade_identify_risky_party",
@@ -99,13 +99,13 @@ async def list_tasks():
                 }
             },
             {
+                "id": "rewrite_ambiguous",
                 "name": TaskName.REWRITE_AMBIGUOUS.value,
                 "difficulty": "hard",
-                "description": "Rewrite an ambiguous clause to be legally sound and enforceable",
+                "description": "Rewrite an ambiguous clause to be legally precise and enforceable",
                 "max_steps": 1,
-                "reward_type": "multi_criteria",
-                "grading": {
-                    "enabled": True,
+                "reward_range": [0.0, 1.0],
+                "grader": {
                     "type": "function",
                     "module": "graders",
                     "function": "grade_rewrite_ambiguous",
