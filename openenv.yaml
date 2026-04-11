@@ -17,30 +17,36 @@ tasks:
     difficulty: easy
     reward_range: [0.0, 1.0]
     max_steps: 3
-    grader:
+    grading:
+      enabled: true
       type: function
       module: graders
       function: grade_find_missing_clauses
+      partial_credit: true
 
   - name: identify_risky_party
     description: "Identify which party is disadvantaged by a flagged clause"
     difficulty: medium
     reward_range: [0.0, 1.0]
     max_steps: 2
-    grader:
+    grading:
+      enabled: true
       type: function
       module: graders
       function: grade_identify_risky_party
+      partial_credit: true
 
   - name: rewrite_ambiguous
     description: "Rewrite an ambiguous clause to be legally precise and enforceable"
     difficulty: hard
     reward_range: [0.0, 1.0]
     max_steps: 1
-    grader:
+    grading:
+      enabled: true
       type: function
       module: graders
       function: grade_rewrite_ambiguous
+      partial_credit: true
 
 endpoints:
   reset: /reset
@@ -51,6 +57,10 @@ reward:
   type: float
   range: [0.0, 1.0]
   partial_credit: true
+
+grading:
+  enabled: true
+  num_tasks: 3
 
 port: 7860
 framework: fastapi
