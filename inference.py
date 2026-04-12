@@ -385,4 +385,6 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    for task in ["find_missing_clauses", "identify_risky_party", "rewrite_ambiguous"]:
+        TASK_NAME = task
+        asyncio.run(main())
