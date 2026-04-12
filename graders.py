@@ -39,7 +39,7 @@ def grade_find_missing_clauses(
     false_negatives = expected_set - submitted_set
 
     if not expected_set:
-        return 1.0, "✅ Contract has no missing clauses. Perfect score."
+       return 0.999, "✅ Contract has no missing clauses..."
 
     base_score = len(true_positives) / len(expected_set)
     penalty    = len(false_positives) * 0.1
@@ -54,7 +54,7 @@ def grade_find_missing_clauses(
         feedback_parts.append(f"⚠️ False positives (present in contract): {', '.join(sorted(false_positives))}")
 
     feedback = " | ".join(feedback_parts) if feedback_parts else "No clauses submitted."
-    return round(score, 3), feedback
+   return round(max(0.001, min(0.999, score)), 3), feedback
 
 
 # ─────────────────────────────────────────────
@@ -103,7 +103,7 @@ def grade_identify_risky_party(
             f"Hint: Look at who bears all the risk/cost in clause {target_clause_id}."
         )
 
-    return round(score, 3), feedback
+   return round(max(0.001, min(0.999, score)), 3), feedback
 
 
 # ─────────────────────────────────────────────
@@ -205,7 +205,7 @@ def grade_rewrite_ambiguous(
     total_score = min(1.0, max(0.0, total_score))
 
     feedback = " | ".join(feedback_parts)
-    return round(total_score, 3), feedback
+   return round(max(0.001, min(0.999, total_score)), 3), feedback
 
 
 # ─────────────────────────────────────────────
