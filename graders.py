@@ -115,25 +115,26 @@ def grade_action(
     action: ContractAction,
     contract_data: Dict[str, Any],
     task: TaskName
-) -> float:
+) -> Tuple[float, str]:
 
-    try:
-        if task == TaskName.FIND_MISSING_CLAUSES:
-            if action.find_missing is None:
-                return 0.0
-            return grade_find_missing_clauses(action.find_missing, contract_data)
+    if task == TaskName.FIND_MISSING_CLAUSES:
+        if action.find_missing is None:
+            return 0.001, "❌ No find_missing action provided."
+        score, feedback = grade_find_missing_clauses(action.find_missing, contract_data)
+    elif task == TaskName.IDENTIFY_RISKY_PARTY:
+        if action.identify_risky is None:
+            return 0.001, "❌ No identify_risky action provided."
+        score, feedback = grade_identify_risky_party(action.identify_risky, contract_data)
+    elif task == TaskName.REWRITE_AMBIGUOUS:
+        if action.rewrite is None:
+            return 0.001, "❌ No rewrite action provided."
+        score, feedback = grade_rewrite_ambiguous(action.rewrite, contract_data)
+    else:
+        return 0.001, f"❌ Unknown task: {task}"
 
-        elif task == TaskName.IDENTIFY_RISKY_PARTY:
-            if action.identify_risky is None:
-                return 0.0
-            return grade_identify_risky_party(action.identify_risky, contract_data)
-
-        elif task == TaskName.REWRITE_AMBIGUOUS:
-            if action.rewrite is None:
-                return 0.0
-            return grade_rewrite_ambiguous(action.rewrite, contract_data)
-
-        return 0.0
+    # Clamp strictly between 0 and 1 — validator rejects 0.0 and 1.0
+    score = max(0.001, min(0.999, score))
+    return round(score, 3), feedback
 
     except Exception as e:
         print("GRADER ERROR:", str(e))  # debug safety
