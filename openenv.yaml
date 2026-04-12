@@ -12,7 +12,7 @@ tags:
   - real-world
 
 tasks:
-  - id: find_missing_clauses
+  - name: find_missing_clauses
     description: "Identify all standard clauses missing from a contract"
     difficulty: easy
     reward_range: [0.0, 1.0]
@@ -23,7 +23,7 @@ tasks:
       function: grade_find_missing_clauses
       partial_credit: true
 
-  - id: identify_risky_party
+  - name: identify_risky_party
     description: "Identify which party is disadvantaged by a flagged clause"
     difficulty: medium
     reward_range: [0.0, 1.0]
@@ -34,7 +34,7 @@ tasks:
       function: grade_identify_risky_party
       partial_credit: true
 
-  - id: rewrite_ambiguous
+  - name: rewrite_ambiguous
     description: "Rewrite an ambiguous clause to be legally precise and enforceable"
     difficulty: hard
     reward_range: [0.0, 1.0]
