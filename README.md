@@ -407,6 +407,6 @@ MIT License — free to use for research and commercial applications.
 
 ## 🙏 Acknowledgments
 
-Built for the **Meta × Hugging Face OpenEnv Hackathon 2025**.  
+Built for the **Codorra 2026 Submission – AI-Powered Legal Contract Review, Risk Detection & Clause Optimization**.  
 Powered by [Groq](https://groq.com) for ultra-fast LLaMA inference.  
 Framework: [OpenEnv](https://github.com/openenv) · [FastAPI](https://fastapi.tiangolo.com) · [Pydantic](https://pydantic.dev)
