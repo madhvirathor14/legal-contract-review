@@ -595,8 +595,8 @@ footer {
   </div>
   <div class="header-right">
     <div class="status-live"><div class="pulse-dot"></div>LIVE</div>
-    <span class="badge badge-gold">Meta × HuggingFace</span>
-    <span class="badge badge-blue">Hackathon 2025</span>
+    <span class="badge badge-gold">Codorra × HuggingFace</span>
+    <span class="badge badge-blue">Codorra 2026</span>
   </div>
 </header>
 
