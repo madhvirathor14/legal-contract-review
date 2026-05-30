@@ -761,7 +761,7 @@ footer {
     <a href="/tasks">Tasks</a>
     <a href="/health">Health</a>
   </div>
-  <span>Meta × Hugging Face Hackathon 2025</span>
+  <span>Codorra Hackathon 2026</span>
 </footer>
 
 <script>
