@@ -10,6 +10,9 @@
 
 ---
 
+**live link**
+https://huggingface.co/spaces/madhvirathor14/legal-contract-review
+
 ## 🎯 What Is This?
 
 This environment simulates **real-world legal contract review** — a $10B+ industry task performed daily by lawyers, paralegals, and legal-tech platforms like LexisNexis and ContractPodAi.
